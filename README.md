@@ -90,6 +90,7 @@ allure serve reports/allure_report
 |--------------|---------------------------------|
 | `smoke`      | Quick checks for critical flows |
 | `regression` | Full regression test suite      |
+| `negative`   | Only negative test suite        |
 
 ---
 

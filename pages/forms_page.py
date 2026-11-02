@@ -1,11 +1,10 @@
-from playwright.sync_api import Locator, expect
+from playwright.sync_api import Locator
 from pages.base_page import BasePage
 
 
 class FormPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
-        self.page = page
         self.login_username_input = page.locator("#login-username")
         self.login_password_input = page.locator("#login-password")
         self.login_message_label = page.locator("#login-message")
@@ -19,7 +18,7 @@ class FormPage(BasePage):
         self.reg_message_label = page.locator("#register-message")
 
 
-    def open(self):
+    def open(self) -> None:
         super().open("#forms")
 
     def get_login_message_label(self) -> Locator:
