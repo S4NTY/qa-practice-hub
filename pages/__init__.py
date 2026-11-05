@@ -4,3 +4,6 @@ from pages.otp_login_page import OTPLoginPage
 from pages.otp_fetch_page import OTPFetchPage
 from pages.otp_resend_page import OTPResendPage
 from pages.selection_page import SelectionPage
+from pages.buttons_page import ButtonsPage
+from pages.buttons_next_page import ButtonsNextPage
+from pages.buttons_go_ahead_page import ButtonsGoAheadPage
