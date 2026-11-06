@@ -1,6 +1,12 @@
 @selection
 Feature: Practice selecting options with different locator strategies
 
+  As a user
+  I want to select and change values across different form controls — radio buttons, single and multi-select dropdowns,
+  checkboxes, sliders, color pickers, toggles, and autocomplete fields
+  So that I can practice using different locator strategies, selecting and unselecting options, and verifying that each
+  control updates its output correctly on the page.
+
   Background:
     Given user opens selection page
 
