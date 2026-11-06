@@ -8,3 +8,4 @@ from pages.buttons_page import ButtonsPage
 from pages.buttons_next_page import ButtonsNextPage
 from pages.buttons_go_ahead_page import ButtonsGoAheadPage
 from pages.tables_page import TablesPage
+from pages.dinamic_page import DynamicPage
