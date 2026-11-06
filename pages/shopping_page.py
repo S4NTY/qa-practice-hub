@@ -21,8 +21,18 @@ class ShoppingPage(BasePage):
         self.checkout_button = page.get_by_test_id("shop-checkout")
         self.message = page.get_by_test_id("shop-message")
 
+
     def open(self) -> None:
         super().open("#shopping")
+
+    def get_product_names(self) -> Locator:
+        return self.product_grid.get_by_test_id("shop-product-name")
+
+    def get_cart_message(self) -> Locator:
+        return self.message
+
+    def get_quantity_for_product(self, name: str) -> Locator:
+        return self.product(name).get_by_test_id("shop-qty-value")
 
     def product(self, name: str) -> Locator:
         return self.product_cards.filter(
@@ -63,15 +73,6 @@ class ShoppingPage(BasePage):
 
     def buy_product_now(self, name: str) -> None:
         self.product(name).get_by_test_id("shop-buy-now").click()
-
-    def get_product_names(self) -> Locator:
-        return self.product_grid.get_by_test_id("shop-product-name")
-
-    def get_cart_message(self) -> Locator:
-        return self.message
-
-    def get_quantity_for_product(self, name: str) -> Locator:
-        return self.product(name).get_by_test_id("shop-qty-value")
 
     def prepare_product_in_cart(self, name: str, quantity: int = 1) -> None:
         self.add_product_to_cart(name)
