@@ -7,3 +7,4 @@ from pages.selection_page import SelectionPage
 from pages.buttons_page import ButtonsPage
 from pages.buttons_next_page import ButtonsNextPage
 from pages.buttons_go_ahead_page import ButtonsGoAheadPage
+from pages.tables_page import TablesPage
