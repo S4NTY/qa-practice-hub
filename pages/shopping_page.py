@@ -6,47 +6,74 @@ class ShoppingPage(BasePage):
 
     def __init__(self, page: Page):
         super().__init__(page)
-        self.search_input = page.get_by_test_id("shop-search")
-        self.category_select = page.get_by_test_id("shop-category")
-        self.clear_filters_button = page.get_by_test_id("shop-clear-filters")
-        self.results_count = page.get_by_test_id("shop-results-count")
-        self.product_grid = page.get_by_test_id("shop-product-grid")
-        self.product_cards = page.get_by_test_id("shop-product")
-        self.empty_results_message = page.get_by_test_id("shop-empty")
-        self.cart_items = page.get_by_test_id("shop-cart-item")
-        self.cart_count = page.get_by_test_id("shop-cart-count")
-        self.cart_empty_message = page.get_by_test_id("shop-cart-empty")
-        self.cart_total = page.get_by_test_id("shop-cart-total")
-        self.clear_cart_button = page.get_by_test_id("shop-clear-cart")
-        self.checkout_button = page.get_by_test_id("shop-checkout")
-        self.message = page.get_by_test_id("shop-message")
+        self._search_input = page.get_by_test_id("shop-search")
+        self._category_select = page.get_by_test_id("shop-category")
+        self._clear_filters_button = page.get_by_test_id("shop-clear-filters")
+        self._results_count = page.get_by_test_id("shop-results-count")
+        self._product_grid = page.get_by_test_id("shop-product-grid")
+        self._product_cards = page.get_by_test_id("shop-product")
+        self._empty_results_message = page.get_by_test_id("shop-empty")
+        self._cart_items = page.get_by_test_id("shop-cart-item")
+        self._cart_count_label = page.get_by_test_id("shop-cart-count")
+        self._cart_empty_message = page.get_by_test_id("shop-cart-empty")
+        self._cart_total = page.get_by_test_id("shop-cart-total")
+        self._clear_cart_button = page.get_by_test_id("shop-clear-cart")
+        self._checkout_button = page.get_by_test_id("shop-checkout")
+        self._message = page.get_by_test_id("shop-message")
 
 
     def open(self) -> None:
         super().open("#shopping")
 
     def get_product_names(self) -> Locator:
-        return self.product_grid.get_by_test_id("shop-product-name")
+        return self._product_grid.get_by_test_id("shop-product-name")
 
     def get_cart_message(self) -> Locator:
-        return self.message
+        return self._message
 
     def get_quantity_for_product(self, name: str) -> Locator:
         return self.product(name).get_by_test_id("shop-qty-value")
 
+    def get_results_count(self) -> Locator:
+        return self._results_count
+
+    def get_product_cards(self) -> Locator:
+        return self._product_cards
+
+    def get_search_input(self) -> Locator:
+        return self._search_input
+
+    def get_cart_items(self) -> Locator:
+        return self._cart_items
+
+    def get_cart_count(self) -> Locator:
+        return self._cart_count_label
+
+    def get_cart_empty_message(self) -> Locator:
+        return self._cart_empty_message
+
+    def get_empty_results_message(self) -> Locator:
+        return self._empty_results_message
+
+    def get_cart_total(self) -> Locator:
+        return self._cart_total
+
+    def get_category_select(self) -> Locator:
+        return self._category_select
+
     def product(self, name: str) -> Locator:
-        return self.product_cards.filter(
+        return self._product_cards.filter(
             has=self.page.get_by_test_id("shop-product-name").get_by_text(name, exact=True)
         )
 
     def search_products(self, query: str) -> None:
-        self.search_input.fill(query)
+        self._search_input.fill(query)
 
     def filter_by_category(self, category: str) -> None:
-        self.category_select.select_option(category)
+        self._category_select.select_option(category)
 
     def clear_filters(self) -> None:
-        self.clear_filters_button.click()
+        self._clear_filters_button.click()
 
     def search_and_filter_by_category(self, query: str, category: str) -> None:
         self.search_products(query)
@@ -61,15 +88,15 @@ class ShoppingPage(BasePage):
             self.product(name).get_by_test_id(test_id).click()
 
     def remove_product_from_cart(self, name: str) -> None:
-        self.cart_items.filter(
+        self._cart_items.filter(
             has=self.page.get_by_test_id("shop-cart-item-name").get_by_text(name, exact=True)
         ).get_by_test_id("shop-cart-remove").click()
 
     def clear_cart(self) -> None:
-        self.clear_cart_button.click()
+        self._clear_cart_button.click()
 
     def checkout(self) -> None:
-        self.checkout_button.click()
+        self._checkout_button.click()
 
     def buy_product_now(self, name: str) -> None:
         self.product(name).get_by_test_id("shop-buy-now").click()

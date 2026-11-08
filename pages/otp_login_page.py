@@ -8,32 +8,32 @@ class OTPLoginPage(BasePage):
 
     def __init__(self, page):
         super().__init__(page)
-        self.otp_username_input = page.locator("#otp-username")
-        self.otp_fetch_button = page.locator("#btn-fetch-otp")
-        self.otp_resend_button = page.locator("#btn-resend-otp")
-        self.otp_login_message_label = page.locator("#otp-login-message")
+        self._otp_username_input = page.locator("#otp-username")
+        self._otp_fetch_button = page.locator("#btn-fetch-otp")
+        self._otp_resend_button = page.locator("#btn-resend-otp")
+        self._otp_login_message_label = page.locator("#otp-login-message")
 
 
     def open(self) -> None:
         super().open("#otp-login")
 
     def get_otp_login_message_label(self) -> Locator:
-        return self.otp_login_message_label
+        return self._otp_login_message_label
 
     def get_otp_fetch_button(self) -> Locator:
-        return self.otp_fetch_button
+        return self._otp_fetch_button
 
     def get_otp_resend_button(self) -> Locator:
-        return self.otp_resend_button
+        return self._otp_resend_button
 
     def otp_username_input_set_text(self, text: str) -> None:
-        self.otp_username_input.fill(text)
+        self._otp_username_input.fill(text)
 
     def otp_fetch_button_click(self) -> OTPFetchPage:
-        return OTPFetchPage(self._click_and_catch_popup(self.otp_fetch_button))
+        return OTPFetchPage(self._click_and_catch_popup(self._otp_fetch_button))
 
     def otp_resend_button_click(self) -> OTPResendPage:
-        return OTPResendPage(self._click_and_catch_popup(self.otp_resend_button))
+        return OTPResendPage(self._click_and_catch_popup(self._otp_resend_button))
 
     def set_one_time_password(self, code: str) -> None:
         for i in range(1, 7):

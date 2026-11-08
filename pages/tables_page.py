@@ -16,31 +16,31 @@ class TablesPage(BasePage):
 
     def __init__(self, page: Page):
         super().__init__(page)
-        self.users_table_body = page.get_by_test_id("users-table-body")
-        self.table_search_input = page.get_by_test_id("table-search")
-        self.select_all_rows_input = page.get_by_test_id("select-all-rows")
-        self.table_selection_output_label = page.get_by_test_id("table-selection-output")
-        self.page_prev_button = page.get_by_test_id("page-prev")
-        self.page_next_button = page.get_by_test_id("page-next")
-        self.page_info_label = page.get_by_test_id("page-info")
-        self.form_message_error_label = page.get_by_test_id("add-role-message")
+        self._users_table_body = page.get_by_test_id("users-table-body")
+        self._table_search_input = page.get_by_test_id("table-search")
+        self._select_all_rows_input = page.get_by_test_id("select-all-rows")
+        self._table_selection_output_label = page.get_by_test_id("table-selection-output")
+        self._page_prev_button = page.get_by_test_id("page-prev")
+        self._page_next_button = page.get_by_test_id("page-next")
+        self._page_info_label = page.get_by_test_id("page-info")
+        self._form_message_error_label = page.get_by_test_id("add-role-message")
 
 
     def open(self) -> None:
         super().open("#tables")
 
     def get_table_selection_output(self) -> Locator:
-        return self.table_selection_output_label
+        return self._table_selection_output_label
 
     def get_page_info(self) -> Locator:
-        return self.page_info_label
+        return self._page_info_label
 
     def get_form_message_error(self) -> Locator:
-        return self.form_message_error_label
+        return self._form_message_error_label
 
     def get_rows(self) -> list[TableRow]:
         rows: list[TableRow] = []
-        for row in self.users_table_body.locator("tr").all():
+        for row in self._users_table_body.locator("tr").all():
             id_, name, email, role, age = row.locator("td").all_inner_texts()[1:-1]
             rows.append(TableRow(int(id_), name, email, role, int(age)))
         return rows
@@ -61,7 +61,7 @@ class TablesPage(BasePage):
         self.page.get_by_test_id(f"role-age-{index}").fill(str(age))
 
     def filter_by_name(self, name: str) -> None:
-        self.table_search_input.fill(name)
+        self._table_search_input.fill(name)
 
     def select_checkbox_by_id(self, id: str) -> None:
         self.page.locator(f'input[data-user-id="{id}"]').check()
@@ -70,10 +70,10 @@ class TablesPage(BasePage):
         self.page.locator(f'button[data-user-id="{id}"]').click()
 
     def select_all_rows_input_click(self) -> None:
-        self.select_all_rows_input.click()
+        self._select_all_rows_input.click()
 
     def page_prev_button_click(self) -> None:
-        self.page_prev_button.click()
+        self._page_prev_button.click()
 
     def page_next_button_click(self) -> None:
-        self.page_next_button.click()
+        self._page_next_button.click()
