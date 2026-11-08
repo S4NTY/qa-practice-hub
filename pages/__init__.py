@@ -13,3 +13,4 @@ from pages.changing_attributes_page import ChangingAttributesPage
 from pages.alerts_page import AlertsPage
 from pages.advanced_page import AdvancedPage
 from pages.shopping_page import ShoppingPage
+from pages.practice_lab_page import PracticeLabPage

@@ -89,7 +89,7 @@ def buy_product_now(shopping_page: ShoppingPage, name: str) -> None:
 
 @then(parsers.parse('shopping results count equals "{count}"'))
 def shopping_results_count_equals(shopping_page: ShoppingPage, count: str) -> None:
-    expect(shopping_page.results_count).to_have_text(count)
+    expect(shopping_page.get_results_count()).to_have_text(count)
 
 @then(parsers.parse('shopping results contain only "{name}"'))
 def shopping_results_contain_only(shopping_page: ShoppingPage, name: str) -> None:
@@ -97,22 +97,22 @@ def shopping_results_contain_only(shopping_page: ShoppingPage, name: str) -> Non
 
 @then("no shopping products are shown")
 def no_shopping_products_are_shown(shopping_page: ShoppingPage) -> None:
-    expect(shopping_page.product_cards).to_have_count(0)
-    expect(shopping_page.empty_results_message).to_be_visible()
+    expect(shopping_page.get_product_cards()).to_have_count(0)
+    expect(shopping_page.get_empty_results_message()).to_be_visible()
 
 @then("shopping filters are cleared")
 def shopping_filters_are_cleared(shopping_page: ShoppingPage) -> None:
-    expect(shopping_page.search_input).to_have_value("")
-    expect(shopping_page.category_select).to_have_value("all")
-    expect(shopping_page.results_count).to_have_text("Showing 8 products")
+    expect(shopping_page.get_search_input()).to_have_value("")
+    expect(shopping_page.get_category_select()).to_have_value("all")
+    expect(shopping_page.get_results_count()).to_have_text("Showing 8 products")
 
 @then(parsers.parse('cart count equals "{count}"'))
 def cart_count_equals(shopping_page: ShoppingPage, count: str) -> None:
-    expect(shopping_page.cart_count).to_have_text(count)
+    expect(shopping_page.get_cart_count()).to_have_text(count)
 
 @then(parsers.parse('cart total equals "{total}"'))
 def cart_total_equals(shopping_page: ShoppingPage, total: str) -> None:
-    expect(shopping_page.cart_total).to_have_text(total)
+    expect(shopping_page.get_cart_total()).to_have_text(total)
 
 @then(parsers.parse('quantity of "{name}" in cart equals "{quantity}"'))
 def quantity_of_product_in_cart_equals(
@@ -125,13 +125,13 @@ def quantity_of_product_in_cart_equals(
 @then(parsers.parse('cart contains "{name}"'))
 def cart_contains_product(shopping_page: ShoppingPage, name: str) -> None:
     expect(
-        shopping_page.cart_items.get_by_test_id("shop-cart-item-name")
+        shopping_page.get_cart_items().get_by_test_id("shop-cart-item-name")
     ).to_contain_text(name)
 
 @then("cart is empty")
 def cart_is_empty(shopping_page: ShoppingPage) -> None:
-    expect(shopping_page.cart_empty_message).to_be_visible()
-    expect(shopping_page.cart_items).to_have_count(0)
+    expect(shopping_page.get_cart_empty_message()).to_be_visible()
+    expect(shopping_page.get_cart_items()).to_have_count(0)
 
 @then(parsers.parse('shopping message equals "{message}"'))
 def shopping_message_equals(shopping_page: ShoppingPage, message: str) -> None:
