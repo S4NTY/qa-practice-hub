@@ -1,4 +1,5 @@
 from pages.base_page import BasePage
+from pages.inputs_pages import InputsPage
 from pages.forms_page import FormPage
 from pages.otp_login_page import OTPLoginPage
 from pages.otp_fetch_page import OTPFetchPage
