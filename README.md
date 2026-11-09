@@ -1,12 +1,12 @@
 # 🐞 QA Practice Hub
 
-**End-to-End Test Automation Framework** for the [QA Practice Hub](https://qapracticehub.com) — built with BDD, Playwright & pytest, powered by Allure reports.
+**UI Test Automation Framework** for the [QA Practice Hub](https://qapracticehub.com) — built with BDD, Playwright & pytest, powered by Allure reports.
 
 ---
 
 ## 📖 About
 
-**QA Practice Hub** is an automated end-to-end testing project that turns manual QA workflows into executable specs.
+**QA Practice Hub** is an automated ui testing project that turns manual QA workflows into executable specs.
 
 The framework combines **Behavior-Driven Development (BDD)** with **Playwright UI automation** and the **pytest** ecosystem to deliver fast, readable, and reliable E2E tests for the web forms of the practice application.
 
